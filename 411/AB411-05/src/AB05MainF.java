@@ -1,4 +1,4 @@
-public class AB05Main {
+public class AB05MainF {
 
     final static int DIM1 = 12;
     final static int DIM2 = 12;

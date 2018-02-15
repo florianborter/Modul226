@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class AB04Main {
+public class AB04MainF {
     public static void main(String[] args) {
         int[] liste = new int[100000];
         int[] klon1 = new int[100000];

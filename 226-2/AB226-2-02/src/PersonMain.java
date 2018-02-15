@@ -1,16 +1,18 @@
-class Person {
+abstract class Person {
     private String name;
     private String vorname;
     private int personalNummer;
+    private int alter;
 
     Person(){
 
     }
 
-    Person(String name, String vorname, int personalNummer){
+    Person(String name, String vorname, int personalNummer, int alter){
         this.name = name;
         this.vorname = vorname;
         this.personalNummer = personalNummer;
+        this.alter = alter;
     }
 
     public String getName() {
@@ -37,6 +39,19 @@ class Person {
         this.personalNummer = personalNummer;
     }
 
+    public int getAlter() {
+        return alter;
+    }
+
+    public void setAlter(int alter) {
+        this.alter = alter;
+    }
+
+    public void print(){
+        System.out.print("Vorname: " + vorname + " Nachname: " + name + " Personalnummer: " + personalNummer);
+    }
+
+    public abstract int berechneFerien();
 }
 
 class Firma {
@@ -45,42 +60,103 @@ class Firma {
     public Firma (Person[] p) {
         mitarbeiter = p;
     }
+
+    public Person[] getMitarbeiter() {
+        return mitarbeiter;
+    }
+
+    public void setMitarbeiter(Person[] mitarbeiter) {
+        this.mitarbeiter = mitarbeiter;
+    }
 }
 
 class Chef extends Person {
     String abteilung;
 
-    Chef(String name, String vorname, int personalNummer, String abteilung){
-        super(name, vorname, personalNummer);
+    Chef(String name, String vorname, int personalNummer, int alter, String abteilung){
+        super(name, vorname, personalNummer, alter);
         this.abteilung = abteilung;
+    }
+
+    @Override
+    public void print() {
+        super.print();
+        System.out.println(" Abteilung: " + abteilung);
+    }
+
+    @Override
+    public int berechneFerien() {
+        if(getAlter() >= 55){
+            return 6;
+        }
+        if(getAlter() >= 45){
+            return 5;
+        }
+        return 4;
     }
 }
 
 class Fachangestellter extends Person {
     Chef vorgesetzter;
 
-    Fachangestellter(String name, String vorname, int personalNummer, Chef chef){
-        super(name, vorname, personalNummer);
+    Fachangestellter(String name, String vorname, int personalNummer, int alter, Chef chef){
+        super(name, vorname, personalNummer, alter);
         this.vorgesetzter = chef;
+    }
+
+    @Override
+    public void print() {
+        super.print();
+        System.out.println(" Vorgesetzter: " + vorgesetzter.getName() + " " + vorgesetzter.getVorname());
+    }
+
+    @Override
+    public int berechneFerien() {
+        if(getAlter() >= 60){
+            return 6;
+        }
+        if(getAlter() >= 50){
+            return 5;
+        }
+        return 4;
+    }
+}
+
+class Lehrnende extends Person {
+    int lehrjahr;
+
+    Lehrnende(String name, String vorname, int personalNummer, int alter, int lehrjahr){
+        super(name, vorname, personalNummer, alter);
+        this.lehrjahr = lehrjahr;
+    }
+
+    @Override
+    public void print() {
+        super.print();
+        System.out.println(" Lehrjahr: " + lehrjahr);
+    }
+
+    @Override
+    public int berechneFerien() {
+        return 5;
     }
 }
 
 public class PersonMain {
     public static void main (String args[]) {
-        /*Chef personal3 = new Chef("Sattler", "Beatrice", 0,"Verkauf");
-        Fachangestellter personal1 = new Fachangestellter("Klein", "Thomas", 1, personal3);
-        Fachangestellter personal2 = new Fachangestellter("","",2, personal3);
-        Person personal4 = new Person();*/
 
         Firma f = new Firma(
-                new Person[] {new Chef("Sattler", "Beatrice",25, "Verkauf")} );
+                new Person[] {new Chef("Sattler", "Beatrice",1, 45, "Verkauf")} );
 
-
-        /*personal1.vorgesetzter=personal3; 		//*1
-        personal4 = personal1; 				//*2
-        personal4.vorgesetzter = personal3; 		//*3
-        personal1 = personal4; 				//*4
-        personal1 = (Fachangestellter) personal4; 	//*5*/
+        Chef c = new Chef("Borter", "Florian", 2, 16,"Informatik");
+        c.print();
+        System.out.println(c.berechneFerien());
+        Fachangestellter fa = new Fachangestellter("Cornu", "Pascal", 3,17, c);
+        fa.print();
+        System.out.println(fa.berechneFerien());
+        Lehrnende l = new Lehrnende("Jolie", "Angelina", 4 , 15, 2);
+        l.print();
+        System.out.println(l.berechneFerien());
 
     }
 }
