@@ -3,6 +3,7 @@ public class AB05MainF {
     final static int DIM1 = 12;
     final static int DIM2 = 12;
     static boolean[][] welt = new boolean[DIM1][DIM2];
+    static int neighbours[][] = new int[DIM1][DIM2];
     // liefert eine zufällig initialisierte Welt
     public static void initWelt() {
 
@@ -44,10 +45,15 @@ public class AB05MainF {
     public static void prepareNextGen(){
         for(int i = 1; i < DIM1-1; i++){
             for(int j = 1; j < DIM2-1; j++){
-                int neighbours = countNeighbours(i,j);
-                if(welt[i][j] && (neighbours < 2 || neighbours > 3)){
+                neighbours[i][j] = countNeighbours(i,j);
+            }
+        }
+
+        for(int i = 1; i < DIM1-1; i++){
+            for(int j = 1; j < DIM2-1; j++){
+                if(welt[i][j] && (neighbours[i][j] < 2 || neighbours[i][j] > 3)){
                     welt[i][j] = false;
-                }else if(!welt[i][j] && neighbours == 3){
+                }else if(!welt[i][j] && neighbours[i][j] == 3){
                     welt[i][j] = true;
                 }
             }
