@@ -14,4 +14,12 @@ public class Zeichnung extends JFrame {
     public void zeichneFiguren(Graphics g) {
         figuren.forEach(i -> i.zeichne(g));
     }
+
+    public void save() {
+
+    }
+
+    public void load() {
+
+    }
 }

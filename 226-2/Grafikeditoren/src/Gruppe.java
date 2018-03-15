@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Gruppe {
+List figuren = new ArrayList<Figur>();
 
     private String name;
-    private List<Figur> figures = new ArrayList<>();
 
     public Gruppe(String name) {
         this.name = name;
@@ -19,6 +19,10 @@ public class Gruppe {
     }
 
     public void add(Figur f) {
-        figures.add(f);
+        figuren.add(f);
+    }
+
+    public List<Figur> getFiguren() {
+        return figuren;
     }
 }
