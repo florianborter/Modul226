@@ -60,6 +60,10 @@ public class Display extends JFrame {
         repaint();
     }
 
+    public void hinzufuegenAusGruppe(Gruppe gruppe){
+        gruppe.getFiguren().forEach(f -> hinzufuegen(f));
+    }
+
     /**
      * L�scht alle Figuren und l�st die Auffrischung des Fensterinhaltes aus.
      */

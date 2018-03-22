@@ -46,4 +46,14 @@ public class Polygon extends Figur {
     public void setyPoints(List<Integer> yPoints) {
         this.yPoints = yPoints;
     }
+
+    @Override
+    public String prepareToSave() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(Figurarten.POLYGON.toString() + ";" + getX() + ";" + getY() + ";" + getColor().toString() + ";");
+        xPoints.forEach(x -> sb.append(x + ","));
+        sb.append(";");
+        yPoints.forEach(y -> sb.append(y + ","));
+        return sb.toString();
+    }
 }

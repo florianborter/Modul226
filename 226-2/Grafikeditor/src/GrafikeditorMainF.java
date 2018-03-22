@@ -1,12 +1,15 @@
 import java.awt.*;
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class GrafikeditorMainF {
     public static void main(String[] args) {
+        Util util = new Util();
         Display display = new Display();
-        Gruppe gruppe = new Gruppe("Rechtecke");
+        Gruppe rechtecke = new Gruppe("Rechtecke");
 
         Rechteck rechteck = new Rechteck(50, 50, 200, 50, Color.BLUE);
         Kreis kreis = new Kreis(100, 100, 200, Color.YELLOW);
@@ -22,12 +25,17 @@ public class GrafikeditorMainF {
         Polygon polygon = new Polygon(0, 0, Color.ORANGE, xPoints, yPoints);
 
 
-        display.hinzufuegen(rechteck);
+        //display.hinzufuegen(rechteck);
         display.hinzufuegen(kreis);
         display.hinzufuegen(linie);
         display.hinzufuegen(polygon);
 
-        gruppe.add(new Rechteck(500, 0, 40, 40, Color.BLACK));
-        gruppe.add(new Rechteck(400, 0, 40, 40, Color.GREEN));
+        rechtecke.add(new Rechteck(500, 0, 40, 40, Color.BLACK));
+        rechtecke.add(new Rechteck(400, 0, 40, 40, Color.GREEN));
+        display.hinzufuegenAusGruppe(rechtecke);
+
+        util.saveFigur(rechteck);
+        util.loadFiur()
+                .forEach(f -> display.hinzufuegen(f));
     }
 }

@@ -17,6 +17,8 @@ abstract public class Figur {
 
     public abstract void zeichne(Graphics g);
 
+    public abstract String prepareToSave();
+
     public int getX() {
         return x;
     }

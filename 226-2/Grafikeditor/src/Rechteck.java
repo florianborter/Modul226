@@ -1,6 +1,7 @@
 import java.awt.*;
+import java.io.Serializable;
 
-public class Rechteck extends Figur {
+public class Rechteck extends Figur{
     private int hoehe;
     private int breite;
 
@@ -31,5 +32,10 @@ public class Rechteck extends Figur {
         g.drawRect(getX(), getY(), breite, hoehe); //Macht einen leeren Rand
         g.setColor(getColor());
         g.fillRect(getX(), getY(), breite, hoehe); //Füllt es aus
+    }
+
+    @Override
+    public String prepareToSave() {
+        return Figurarten.RECHTECK.toString() + ";" + getX() + ";" + getY() + ";" + getColor().getRGB() + ";" + breite + ";" + hoehe;
     }
 }
