@@ -24,4 +24,9 @@ public class Kreis extends Figur {
         g.setColor(getColor());
         g.fillOval(getX(), getY(), radius, radius);
     }
+
+    @Override
+    public String prepapreToSave() {
+        return FigurArten.KREIS.toString() + ";" + getX() + ";" + getY() + ";" + getColor().getRGB() + ";" + getRadius();
+    }
 }

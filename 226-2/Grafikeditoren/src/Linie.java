@@ -32,4 +32,9 @@ public class Linie extends Figur {
         g.setColor(getColor());
         g.drawLine(getX(), getY(), endX, endY);
     }
+
+    @Override
+    public String prepapreToSave() {
+        return FigurArten.LINIE.toString() + ";" + getX() + ";" + getY() + ";" + getColor().getRGB() + ";" + getEndX() + ";" + getEndY();
+    }
 }
